@@ -5,17 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Movies & TV Shows</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #181818; color: #fff; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 40px auto; background: #232323; padding: 24px; border-radius: 10px; box-shadow: 0 2px 8px #000a; }
-        h1 { text-align: center; }
-        input, select, button { padding: 8px; margin: 8px 0; border-radius: 4px; border: none; }
-        input, select { width: 70%; }
-        button { background: #e50914; color: #fff; cursor: pointer; width: 28%; }
-        .results { margin-top: 20px; }
-        .result-item { background: #333; padding: 10px; border-radius: 5px; margin-bottom: 10px; cursor: pointer; }
-        .result-item:hover { background: #444; }
-        .embed-container { margin-top: 30px; text-align: center; }
-        label { display: block; margin-top: 10px; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Animated gradient background */
+            background: linear-gradient(-45deg, #1e3c72, #2a5298, #ff512f, #dd2476);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+        }
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: rgba(35, 35, 35, 0.92);
+            padding: 32px 28px 28px 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff512f, #dd2476, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        input, select {
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: none;
+            width: 68%;
+            font-size: 1rem;
+            background: #232323;
+            color: #fff;
+            outline: none;
+            transition: box-shadow 0.2s;
+            box-shadow: 0 2px 8px #0002;
+        }
+        input:focus, select:focus {
+            box-shadow: 0 0 0 2px #ff512f55;
+        }
+        button {
+            background: linear-gradient(90deg, #ff512f, #dd2476);
+            color: #fff;
+            cursor: pointer;
+            width: 30%;
+            padding: 10px 0;
+            border-radius: 6px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-left: 2%;
+            box-shadow: 0 2px 8px #0002;
+            transition: background 0.2s, transform 0.1s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .results {
+            margin-top: 28px;
+        }
+        .result-item {
+            background: linear-gradient(90deg, #232323 80%, #2a5298 100%);
+            padding: 16px 18px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #0003;
+            transition: background 0.2s, transform 0.1s;
+            font-size: 1.08rem;
+        }
+        .result-item:hover {
+            background: linear-gradient(90deg, #232323 60%, #ff512f 100%);
+            transform: scale(1.03);
+        }
+        .embed-container {
+            margin-top: 36px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-size: 1.05rem;
+        }
+        @media (max-width: 700px) {
+            .container { max-width: 98vw; padding: 12px 2vw; }
+            input, select, button { width: 100%; margin: 8px 0; }
+            button { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
