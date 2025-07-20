@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Movies & TV Shows</title>
+    <!-- Google Fonts for elegance -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Montserrat', 'Quicksand', Arial, sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            /* Animated gradient background */
             background: linear-gradient(-45deg, #1e3c72, #2a5298, #ff512f, #dd2476);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -23,87 +24,143 @@
         }
         .container {
             max-width: 600px;
-            margin: 40px auto;
-            background: rgba(35, 35, 35, 0.92);
-            padding: 32px 28px 28px 28px;
-            border-radius: 18px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,255,255,0.12);
+            margin: 48px auto 32px auto;
+            background: rgba(35, 35, 35, 0.55);
+            padding: 38px 32px 32px 32px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 40px 0 #ff512f33;
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            position: relative;
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #ff512f55, 0 2px 8px #0002;
+            background: #fff2;
         }
         h1 {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.7rem;
             letter-spacing: 2px;
             margin-bottom: 18px;
-            font-weight: 700;
+            font-weight: 800;
+            font-family: 'Quicksand', 'Montserrat', Arial, sans-serif;
             background: linear-gradient(90deg, #ff512f, #dd2476, #1e3c72, #2a5298);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            align-items: center;
+            justify-content: center;
+        }
         input, select {
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 6px;
+            padding: 12px 14px;
+            border-radius: 8px;
             border: none;
-            width: 68%;
-            font-size: 1rem;
-            background: #232323;
+            font-size: 1.08rem;
+            background: rgba(35, 35, 35, 0.85);
             color: #fff;
             outline: none;
-            transition: box-shadow 0.2s;
-            box-shadow: 0 2px 8px #0002;
+            box-shadow: 0 2px 16px #0002, 0 0 0 2px #ff512f22 inset;
+            transition: box-shadow 0.2s, background 0.2s;
+            font-family: 'Montserrat', Arial, sans-serif;
         }
         input:focus, select:focus {
-            box-shadow: 0 0 0 2px #ff512f55;
+            box-shadow: 0 0 0 3px #ff512f88, 0 2px 16px #0002;
+            background: rgba(35, 35, 35, 0.98);
         }
         button {
             background: linear-gradient(90deg, #ff512f, #dd2476);
             color: #fff;
             cursor: pointer;
-            width: 30%;
-            padding: 10px 0;
-            border-radius: 6px;
+            padding: 12px 0;
+            border-radius: 8px;
             border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-left: 2%;
-            box-shadow: 0 2px 8px #0002;
-            transition: background 0.2s, transform 0.1s;
+            font-size: 1.13rem;
+            font-weight: 700;
+            min-width: 120px;
+            box-shadow: 0 2px 8px #0002, 0 0 12px #ff512f33;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            font-family: 'Quicksand', Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        button:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 100%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+            z-index: 0;
+        }
+        button:hover:after {
+            width: 200px;
+            height: 200px;
         }
         button:hover {
             background: linear-gradient(90deg, #1e3c72, #2a5298);
             transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 4px 24px #2a529888, 0 0 12px #ff512f55;
         }
         .results {
-            margin-top: 28px;
+            margin-top: 32px;
+            background: rgba(30, 60, 114, 0.18);
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #0002;
+            padding: 18px 10px 10px 10px;
         }
         .result-item {
             background: linear-gradient(90deg, #232323 80%, #2a5298 100%);
-            padding: 16px 18px;
-            border-radius: 8px;
-            margin-bottom: 14px;
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin-bottom: 16px;
             cursor: pointer;
             box-shadow: 0 2px 8px #0003;
-            transition: background 0.2s, transform 0.1s;
-            font-size: 1.08rem;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            font-size: 1.13rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            border: 1.5px solid transparent;
         }
         .result-item:hover {
             background: linear-gradient(90deg, #232323 60%, #ff512f 100%);
-            transform: scale(1.03);
+            transform: scale(1.035);
+            box-shadow: 0 4px 16px #ff512f44;
+            border: 1.5px solid #ff512f88;
         }
         .embed-container {
-            margin-top: 36px;
+            margin-top: 40px;
             text-align: center;
+            background: rgba(35, 35, 35, 0.7);
+            border-radius: 16px;
+            box-shadow: 0 2px 16px #0002, 0 0 24px #2a529855;
+            padding: 18px 0 8px 0;
         }
         label {
             display: block;
-            margin-top: 12px;
-            font-size: 1.05rem;
+            margin-top: 14px;
+            font-size: 1.09rem;
+            font-family: 'Montserrat', Arial, sans-serif;
         }
         @media (max-width: 700px) {
             .container { max-width: 98vw; padding: 12px 2vw; }
+            .search-bar { flex-direction: column; gap: 6px; }
             input, select, button { width: 100%; margin: 8px 0; }
             button { margin-left: 0; }
         }
@@ -111,8 +168,11 @@
 </head>
 <body>
     <div class="container">
+        <div class="logo">
+            <img src="https://img.icons8.com/color/96/000000/clapperboard.png" alt="Logo">
+        </div>
         <h1>Watch Movies & TV Shows</h1>
-        <div>
+        <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Search for a movie or TV show...">
             <select id="typeSelect">
                 <option value="movie">Movie</option>
